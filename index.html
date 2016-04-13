@@ -9,13 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Stylish Portfolio - Start Bootstrap Theme</title>
+    <title>Understanding Large Social Networks</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <link rel="icon" href="img/share.ico" type="image/x-icon" />
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +29,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style type="text/css">
+        .social-icons {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,7 +44,7 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand">
-                <a href="#top"  onclick = $("#menu-close").click(); >Start Bootstrap</a>
+                <a href="#top"  onclick = $("#menu-close").click(); >Quick Navigation</a>
             </li>
             <li>
                 <a href="#top" onclick = $("#menu-close").click(); >Home</a>
@@ -53,7 +59,7 @@
                 <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
             </li>
             <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
+                <a href="#contact" onclick = $("#menu-close").click(); >Other Links</a>
             </li>
         </ul>
     </nav>
@@ -61,7 +67,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Start Bootstrap</h1>
+            <h1>Understanding Large Social Networks</h1>
             <h3>Free Bootstrap Themes &amp; Templates</h3>
             <br>
             <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
@@ -221,42 +227,45 @@
     </aside>
 
     <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-        </iframe>
-    </section>
-
+    <!--<section id="contact" style="background-color: grey;">
+        <h4>Team</h4>
+    </section>-->
+    <!-- Callout -->
+    <aside class="callout2">
+        <div class="text-vertical-center">
+            <h1>Team</h1>
+        <ul class="list-inline" style="padding-top: 3%;">
+            <li style="padding-right: 5%;">
+                <img src="img/madanjhawar.png" style="border-radius: 50%; height: 150px; width: 150px;"></img>
+                <h4><strong>Madan Jhawar</strong></h4>
+            </li>
+             <li style="padding-right: 5%;">
+                <img src="img/rajpatel.png" style="border-radius: 50%; height: 150px; width: 150px;"></img>
+                <h4><strong>Raj Patel</strong></h4>
+            </li>
+             <li>
+                <img src="img/kishanvadalia.png" style="border-radius: 50%; height: 150px; width: 150px;"></img>
+                <h4><strong>Kishan Vadalia</strong></h4>
+            </li>
+        </ul>
+        </div>
+        
+    </aside>
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
-                    </h4>
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
-                        </li>
-                    </ul>
-                    <br>
+                    <h4><strong>Other links</strong></h4>
+                    <hr class="small" style="background-color: black;">
                     <ul class="list-inline">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
+                        <li><a class="social-icons" href="" title="Github"><i class="fa fa-github fa-4x"></i></a></li>
+                        <li><a class="social-icons" href="" title="Youtube"><i class="fa fa-youtube fa-4x"></i></a></li>
+                        <li><a class="social-icons" href="" title="SlideShare"><i class="fa fa-slideshare fa-4x"></i></a></li>
+                        <li><a class="social-icons" href="" title="Dropbox"><i class="fa fa-dropbox fa-4x"></i></a></li>
+                        <li><a class="social-icons" href="" title="Webpage"><i class="fa fa-link fa-4x"></i></a></li>
                     </ul>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                    
                 </div>
             </div>
         </div>

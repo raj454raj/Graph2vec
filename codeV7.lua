@@ -7,7 +7,7 @@ require 'sys'
 
 print('Reading nodes...')
 local vocab = {}
-for line in io.lines("../BlogCatalog-dataset/datatemp/nodes.csv") do
+for line in io.lines("../NewData/BlogCatalog-dataset/data/nodes.csv") do
 	local u = line
 	vocab[#vocab+1] = {u=torch.Tensor{u}}
 end
@@ -16,7 +16,7 @@ num_edges = 0
 
 print('Reading edges...')
 local graph = {}
-for line in io.lines("../BlogCatalog-dataset/datatemp/edges.csv") do
+for line in io.lines("../NewData/BlogCatalog-dataset/data/edges.csv") do
 	local u,v = line:match("([^,]+),([^,]+)")
 	u = tonumber(u)
 	v = tonumber(v)
@@ -67,6 +67,8 @@ neg_sample_lookup = torch.IntTensor(neg_sample_lookup_size)
 criterion = nn.DistKLDivCriterion()
 edge_batch = {}
 function edge_batch:size() return #edge_batch end
+
+
 
 -- #############################################################################################################
 
@@ -170,6 +172,7 @@ model_FOP.modules[1]:add(node_lookupR)
 model_FOP.modules[1]:add(node_lookupR:clone('weight', 'bias', 'gradWeight', 'gradBias'))
 model_FOP:add(nn.DotProduct())
 model_FOP:add(nn.Sigmoid())
+
 
 
 
@@ -301,12 +304,28 @@ for epoch = 1, max_epochs do
 	print('# current error = '..l)
 end
 
-
-print('\nNode Lookup after learning')
-
-print(node_lookupR.weight)
-torch.save("temp.dat", node_lookupR.weight)
+-- print('\nNode Lookup after learning')
+-- print(type(node_lookupR.weight))
 
 
+data = node_lookupR.weight
+path = "blogcatalog.embeddings"
+sep = " "
+sep = sep or ','
 
+local file = assert(io.open(path, "w"))
+file:write(#vocab)
+file:write(sep)
+file:write(node_embed_size)
+file:write('\n')
+for i=1,#vocab do
+    file:write(i)
+    file:write(sep)
+    for j=1,node_embed_size do
+        if j>1 then file:write(sep) end
+        file:write(data[i][j])
+    end
+    file:write('\n')
+end
+file:close()
 

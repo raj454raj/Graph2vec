@@ -1,12 +1,12 @@
 # Understanding Large Social Networks using LINE paper.
 
-Base Paper: 
+Base Paper: http://goo.gl/T02ePw
 
 Youtube Video:
 
-Code on Github:
+Code on Github: https://github.com/raj454raj/Graph2vec/
 
-Project Webpage:
+Project Webpage: http://raj454raj.github.io/Graph2vec/
 
 Slideshare link:
 

@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Parallax Template - Materialize</title>
+  <title>Understanding Large Social Networks</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,21 +25,36 @@
     .social-icons > a:hover {
         color: black;
     }
-
+    #go-up {
+        position: fixed;
+        right: 3%;
+        bottom: 8%;
+        z-index: 100;
+    }
   </style>
+  <script>
 
+  </script>
 </head>
 <body>
+  <div id="complete-top"></div>
+  <div id="go-up">
+     <a class="btn-floating btn-large waves-effect waves-light yellow scrollable" href="#complete-top"><i class="fa fa-arrow-up"></i></a>
+  </div>
   <nav class="purple" role="navigation">
     <div class="nav-wrapper container">
       <!--<a id="logo-container" href="#" class="brand-logo">Logo</a>-->
       <ul class="right hide-on-med-and-down">
         <li><a href="#introduction" class="scrollable" style="color: white;"><strong>Introduction</strong></a></li>
-        <li><a href="#team" class="scrollable" style="color: white;"><strong>Team</strong></a></li>
+        </li><li><a href="#line" class="scrollable" style="color: white;"><strong>LINE</strong></a></li>
+        </li><li><a href="#results" class="scrollable" style="color: white;"><strong>Results</strong></a></li>
+        <li><a href="#team" class="scrollable" style="color: white;"><strong>Team</strong></a>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#introduction" class="scrollable">Introduction</a></li>
+        <li><a href="#line" class="scrollable">LINE</a></li>
+        <li><a href="#results" class="scrollable">Results</a></li>
         <li><a href="#team" class="scrollable">Team</a></li>
       </ul>
       <a href="" data-activates="nav-mobile" class="button-collapse white-text"><i class="material-icons">menu</i></a>
@@ -55,7 +70,7 @@
           <h5 class="header col s12 light"><strong>Base paper: LINE: LARGE-SCALE INFORMATION NETWORK EMBEDDING</strong></h5>
         </div>
         <div class="row center">
-          <a href="#introduction" id="download-button" class="scrollable btn-large waves-effect waves-light purple">Get Started</a>
+          <a href="#introduction" id="download-button" class="scrollable btn-large waves-effect waves-light purple">Explore</a>
         </div>
         <br><br>
 
@@ -95,11 +110,128 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+          <h5 class="header col s12"><strong>Social Networks data is increasing exponentially!</strong></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="background4.jpg" alt="Unsplashed background img 4"></div>
+  </div>
+
+<div class="container" id="line">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row center">
+        <h4>LINE: LARGE-SCALE INFORMATION NETWORK EMBEDDING</h4>
+      </div>
+      <div class="row">
+        <div class="col s4 card">
+            <div class="card-content black-text">
+              <span class="card-title">First-order proximity</span>
+              <p>The <b>First-order proximity</b> refers to the local pairwise proximity between the vertices in the network (only neighbours).</p>
+            </div>
+            <div class="card-action center">
+              <a href="#modal1" class="waves-effect waves-light btn modal-trigger purple">Learn More</a>
+            </div>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <h4>First-Order Proximity</h4>
+                <hr>
+                <div class="center">
+                 <img src="img/firstorder.png" alt="First order proximity details."></img>
+                </div>
+                <hr>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn purple">Done</a>
+              </div>
+            </div>
+        </div>
+        <div class="col s4 card">
+            <div class="card-content black-text">
+              <span class="card-title">Second-order proximity</span>
+              <p><b>Second-order proximity</b> checks for directly connected nodes as well as other nodes which have influence over itself.</p>
+            </div>
+            <div class="card-action center">
+              <a href="#modal2" class="waves-effect waves-light btn modal-trigger purple">Learn More</a>
+            </div>
+            <!-- Modal Structure -->
+            <div id="modal2" class="modal">
+              <div class="modal-content">
+                <h4>Second-Order Proximity</h4>
+                <hr>
+                <div class="center">
+                 <img src="img/secondorder.png" alt="Second order proximity details."></img>
+                </div>
+              <hr>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn purple">Done</a>
+              </div>
+            </div>
+        </div>
+        <div class="col s4 card">
+            <div class="card-content black-text">
+              <span class="card-title">Model Optimization</span>
+              <p><b>Negative Sampling</b>, which samples multiple negative edges according to some noisy distribution for each edge (i, j).</p>
+            </div>
+            <div class="card-action center">
+              <a href="#modal3" class="waves-effect waves-light btn modal-trigger purple">Learn More</a>
+            </div>
+            <!-- Modal Structure -->
+            <div id="modal3" class="modal">
+              <div class="modal-content">
+              <h4>Model Optimization</h4>
+                <hr>
+                <div class="center">
+                 <img src="img/modeloptimization.png" alt="Second order proximity details."></img>
+                </div>
+                <hr>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn purple">Done</a>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12"><strong>Computation needs to be performed faster as the number of nodes and edges are increasing</strong></h5>
         </div>
       </div>
     </div>
     <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container" id="results">
+    <div class="section">
+
+      <div class="row">
+        <div class="row col s12 center">
+          <h2>Results</h2>
+          <p>Learning vector representation for each data-node is completed. This data will be passed to ranker.py for evaluating performance of the implementation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12"><strong>Representing nodes in low-dimensional spaces helps to perform tasks like visualization, node classification, link prediction, etc. faster</strong></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="background3.jpg" alt="Unsplashed background img 3"></div>
   </div>
 
   <div class="container" id="team">
@@ -130,11 +262,11 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+          <h5 class="header col s12"><strong>Representing nodes in low-dimensional spaces helps to perform tasks like visualization, node classification, link prediction, etc. faster</strong></h5>
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="background3.jpg" alt="Unsplashed background img 3"></div>
+    <div class="parallax"><img src="background5.jpg" alt="Unsplashed background img 3"></div>
   </div>
 
   <footer class="page-footer purple">
@@ -192,13 +324,14 @@
             $(children[0]).addClass('fa-4x');
             $(children[0]).removeClass('fa-3x');
         });
-        
+
         $('.social-icons a').mouseout(function() {
             var children = $(this).children();
             $(children[0]).addClass('fa-3x');
             $(children[0]).removeClass('fa-4x');
         });
 
+        $('.modal-trigger').leanModal();
       });
   </script>
   </body>

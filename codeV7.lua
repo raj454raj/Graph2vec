@@ -39,21 +39,15 @@ for i=1, #vocab do
 end
 
 
-
-
-
---for i=1, #graph do
---	graph[i]['w'] = torch.Tensor{1/#graph}
---	graph[i]['s'] = torch.Tensor{1/Out_Degree[graph[i]['u'][1]]}
---end
-
-
 context = {}
 for i =1,10 do
 	context[i] = 0
 end
-
 print('data preprocessing done.!!')
+
+
+
+-- Setting up the various parameters to the our model
 
 vocab_size = #vocab
 node_embed_size = 5
@@ -97,21 +91,31 @@ function build_table()
 end
 
 
-function generate_neg_samples(node)     -- NEEDS TO BE UPDATED
+function generate_neg_samples(node)
     local i = 1
     while i <= num_neg_samples do
         neg_context = neg_sample_lookup[torch.random(neg_sample_lookup_size)]
+        local flag = 1
 		if neg_context ~= node then
-			--context[i] = torch.Tensor{neg_context}
-	    	context[i] = torch.Tensor{neg_context}
-	    	i = i + 1
+			for k = 1,#graph[node] do
+				if graph[node][k] == neg_context then
+					flag = 0
+					break
+				end
+			end
+			if flag == 1 then
+				context[i] = torch.Tensor{neg_context}
+	    		i = i + 1
+	    	end
 		end
     end
 end
 
--- Populate Neg_Sample_Lookup table
-build_table()
 
+
+-- Populate Neg_Sample_Lookup table
+
+build_table()
 
 train_data_FOP = {}
 train_data_SOP = {}
@@ -147,8 +151,9 @@ while i <= #vocab do
  		end
  	end
  	i = i + 1
- 	print(i)
 end
+print()
+print('Training data generated')
 
 if k<=batch_size then
 	train_data_FOP[#train_data_FOP+1] = batch_FOP
@@ -160,12 +165,13 @@ print(#train_data_FOP)
 print(#train_data_SOP)
 
 
-
 function train_data_FOP:size() return #train_data_FOP end
 
 
-node_lookupR = nn.LookupTable(vocab_size, node_embed_size)
 
+-- Building the NN model for First-Order Proximity
+
+node_lookupR = nn.LookupTable(vocab_size, node_embed_size)
 model_FOP = nn.Sequential()
 model_FOP:add(nn.ParallelTable())
 model_FOP.modules[1]:add(node_lookupR)
@@ -175,19 +181,13 @@ model_FOP:add(nn.Sigmoid())
 
 
 
-
-
+-- Running the iterations for NN
 
 params, grad_params = model_FOP:getParameters()
-
 feval = function(x)
-	-- Get new params
 	params:copy(x)
-
-	-- Reset gradients (buffers)
 	grad_params:zero()
 
-	-- loss is average of all criterions
 	local loss = 0
 	for i = 1, #edge_batch do
 		local output = model_FOP:forward(edge_batch[i][1])
@@ -196,7 +196,6 @@ feval = function(x)
 		model_FOP:backward(edge_batch[i][1], grads)
 	end
 	grad_params:div(#edge_batch)
-
 	return loss, grad_params
 end
 
@@ -211,19 +210,13 @@ for epoch = 1, max_epochs do
 	end
 	print('# current error = '..l)
 end
--- print('\nNode Lookup after learning')
--- print(node_lookup.weight)
 
--- #############################################################################################################--
---
 
--- print(#train_data_SOP)
+
 
 -- Building neural network (Second-Order proximity)
 
 node_lookupC = nn.LookupTable(vocab_size, node_embed_size)
--- node_lookupR = nn.LookupTable(vocab_size, node_embed_size)
-
 model2 = nn.Sequential()
 model2:add(nn.ParallelTable())
 model2.modules[1]:add(node_lookupC)
@@ -239,17 +232,14 @@ for k =1, num_neg_samples  do
 end
 model4:add(nn.JoinTable(1))
 
-
 model3 = nn.Sequential()
 model3:add(nn.ParallelTable())
 model3.modules[1]:add(model4)
-
 model3.modules[1]:add(node_lookupR)
 model3:add(nn.MM(false,true))
 model3:add(nn.MulConstant(-1,true))
 model3:add(nn.LogSigmoid())
 model3:add(nn.Sum())
-
 
 model = nn.Sequential()
 model:add(nn.ParallelTable())
@@ -259,19 +249,9 @@ model:add(nn.DotProduct())
 
 
 
--- input = {{torch.Tensor{2},torch.Tensor{3}},{{torch.Tensor{4},torch.Tensor{4},torch.Tensor{4},torch.Tensor{4},torch.Tensor{4},torch.Tensor{4},torch.Tensor{4},torch.Tensor{4},torch.Tensor{4},torch.Tensor{4}},torch.Tensor{2}}}
--- print(model:forward(input))
-
-
-
-
-
-
-
-
+-- Running iterations for Second-Order NN
 
 params, grad_params = model:getParameters()
-
 feval2 = function(x)
 	-- Get new params
 	params:copy(x)
@@ -304,9 +284,9 @@ for epoch = 1, max_epochs do
 	print('# current error = '..l)
 end
 
--- print('\nNode Lookup after learning')
--- print(type(node_lookupR.weight))
 
+
+-- Writing the final node embeddings into a file
 
 data = node_lookupR.weight
 path = "blogcatalog.embeddings"

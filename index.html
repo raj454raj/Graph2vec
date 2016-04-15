@@ -47,6 +47,7 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="#introduction" class="scrollable" style="color: white;"><strong>Introduction</strong></a></li>
         </li><li><a href="#line" class="scrollable" style="color: white;"><strong>LINE</strong></a></li>
+        </li><li><a href="#novelty" class="scrollable" style="color: white;"><strong>Novelty</strong></a></li>
         </li><li><a href="#results" class="scrollable" style="color: white;"><strong>Results</strong></a></li>
         <li><a href="#team" class="scrollable" style="color: white;"><strong>Team</strong></a>
       </ul>
@@ -54,6 +55,7 @@
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#introduction" class="scrollable">Introduction</a></li>
         <li><a href="#line" class="scrollable">LINE</a></li>
+        <li><a href="#novelty" class="scrollable">Novelty</a></li>
         <li><a href="#results" class="scrollable">Results</a></li>
         <li><a href="#team" class="scrollable">Team</a></li>
       </ul>
@@ -102,6 +104,19 @@
           node classification, link prediction and recommendation.
         </p>
       </div>
+      <div class="row">
+        <div class="col offset-s3 s6">
+          <div class="card small">
+            <div class="card-image center">
+              <img src="img/graph.png" style="padding-left: 17%; width: 375px; height: 154px"></img>
+            </div>
+            <div class="card-content">
+              Edges can be undirected, directed, and/or weighted. Vertex 6 and 7 should be placed closely in the low-dimensional space as they are connected through a strong tie. Vertex 5 and 6 should also be placed closely as they share similar neighbours
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -207,8 +222,40 @@
         </div>
       </div>
     </div>
+    <div class="parallax"><img src="background6.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container" id="novelty">
+    <div class="section">
+
+      <div class="row">
+        <div class="row col s12 center">
+
+          <div class="card-panel">
+            <span class="card-title"><h2>Novelty</h2></span>
+            <div class="card-content">
+              As mentioned in LINE paper, neural networks for the First-Order Proximity and the Second-Order Proximity independently, and then concatenate the embeddings learned from both the models for a node to get the final embeddings of a node.
+In our project, we update this part of the model.
+<br/>
+We use the same lookup table for the node representation in both the neural networks, i.e., the node embeddings learned from the First-Order Proximity are used in the neural network for the Second-Order Proximity, instead of initializing them again to random values. The embeddings learned from the Second-Order Proximity deep-net are, then, taken as the final embeddings of a node.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12"><strong>Computation needs to be performed faster as the number of nodes and edges are increasing</strong></h5>
+        </div>
+      </div>
+    </div>
     <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 2"></div>
   </div>
+
 
   <div class="container" id="results">
     <div class="section">
@@ -221,7 +268,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">

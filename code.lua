@@ -7,7 +7,7 @@ require 'sys'
 
 print('Reading nodes...')
 local vocab = {}
-for line in io.lines("../NewData/BlogCatalog-dataset/data/nodes.csv") do
+for line in io.lines("data/nodes.csv") do
 	local u = line
 	vocab[#vocab+1] = {u=torch.Tensor{u}}
 end
@@ -16,7 +16,7 @@ num_edges = 0
 
 print('Reading edges...')
 local graph = {}
-for line in io.lines("../NewData/BlogCatalog-dataset/data/edges.csv") do
+for line in io.lines("data/edges.csv") do
 	local u,v = line:match("([^,]+),([^,]+)")
 	u = tonumber(u)
 	v = tonumber(v)
@@ -38,23 +38,16 @@ for i=1, #vocab do
 	end
 end
 
-
-context = {}
-for i =1,10 do
-	context[i] = 0
-end
 print('data preprocessing done.!!')
-
-
 
 -- Setting up the various parameters to the our model
 
 vocab_size = #vocab
-node_embed_size = 5
-learning_rate = 0.01
-max_epochs = 10
+node_embed_size = 10
+learning_rate = 0.035
+max_epochs = 30
 batch_size = 1000
-num_neg_samples = 5
+num_neg_samples = 10
 neg_sample_lookup_size = 1e6
 neg_sample_lookup = torch.IntTensor(neg_sample_lookup_size)
 
@@ -62,9 +55,15 @@ criterion = nn.DistKLDivCriterion()
 edge_batch = {}
 function edge_batch:size() return #edge_batch end
 
+context = {}
+for i =1,num_neg_samples do
+    context[i] = 0
+end
 
 
 -- #############################################################################################################
+
+-- Build negative sampling table
 
 function build_table()
     local start = sys.clock()
@@ -90,6 +89,9 @@ function build_table()
     print('Negative sampling table done..')
 end
 
+
+
+-- function to generate negative samples for a node
 
 function generate_neg_samples(node)
     local i = 1
